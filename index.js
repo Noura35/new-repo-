@@ -13,7 +13,7 @@ app.get("/test", (req, res) => {
 
 
 
-mongoose.connect('"mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/auth?retryWrites=true&w=majority',
+mongoose.connect("mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/auth?retryWrites=true&w=majority",
 ).then(() => {
     console.log('connected to base de données')
 })
