@@ -16,7 +16,7 @@ app.get("/test", (req, res) => {
     res.send('bonjour');
 })
 
-app.get('/log',(req,res)=>{
+app.post('/log',(req,res)=>{
     console.log(req.body);
    let newvalue = new value ({
       deviceID :req.body.id,
