@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
 //const router=require("./routes/route")
 
 const value = require("./models/value");
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.post("/test", (req, res) => {
     res.send('hello world');
@@ -14,25 +16,17 @@ app.get("/test", (req, res) => {
     res.send('bonjour');
 })
 
-app.get('/log/:info',(req,res)=>{
-   
-   let tab=req.params.info
-
-      
-   var data = tab.split('||');
-   var valDate = data[3];
- 
-
+app.post('/log',(req,res)=>{
+    console.log(req.body);
    let newvalue = new value ({
-      deviceID :data[0],
-      valueT :data[1],
-      valueH :data[2],
+      deviceID :req.body.id,
+      valueT :req.body.temp,
+      valueH :req.body.hum,
       dateTime:Math.floor(Date.now() / 1000)
        
        
     });
     newvalue.save()
-       console.log(data);
      return res.status(200).json({
          success:"Position save effactué avec succes"
      });

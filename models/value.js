@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const valueSchema = new mongoose.Schema(
 
     {
-    deviceID: Number,
-    valueT: Number,
-    valueH: Number,
-    dateTime: Date
+    deviceID: String,
+    valueT: String,
+    valueH: String,
+    dateTime: String
 
   },
   {
