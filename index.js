@@ -36,7 +36,7 @@ app.post('/log',(req,res)=>{
     console.log(req.body);
    let newvalue = new value ({
       deviceID :req.body.id,
-      electrovane: req.body.electrovane,
+      electro: req.body.electrovane,
       
       dateTime:Math.floor(Date.now() / 1000)
        
