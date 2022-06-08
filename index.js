@@ -20,8 +20,8 @@ app.get('/log',(req,res)=>{
     console.log(req.body);
    let newvalue = new value ({
       deviceID :req.body.id,
-      valueT :req.body.temp,
-      valueH :req.body.hum,
+      temp :req.body.temp,
+      hum :req.body.hum,
       dateTime:Math.floor(Date.now() / 1000)
        
        
