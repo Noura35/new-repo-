@@ -6,7 +6,7 @@ const valueSchema = new mongoose.Schema(
     deviceID: String,
     hum: String,
     temp: String,
-    electro: 0,
+    electro: Boolean,
     dateTime: String
 
   },
