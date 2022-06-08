@@ -32,6 +32,21 @@ app.post('/log',(req,res)=>{
      });
    });
 
+   app.post('/emit',(req,res)=>{
+    console.log(req.body);
+   let newvalue = new value ({
+      deviceID :req.body.id,
+      electrovane: req.body.electrovane,
+      
+      dateTime:Math.floor(Date.now() / 1000)
+       
+       
+    });
+    newvalue.save()
+     return res.status(200).json({
+         success:"Position save effactué avec succes"
+     });
+   });
 
 mongoose.connect("mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/auth?retryWrites=true&w=majority",
 ).then(() => {
