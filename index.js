@@ -32,7 +32,7 @@ app.get('/log',(req,res)=>{
      });
    });
 
-   app.post('/api/sensors',(req,res)=>{
+   app.post('/post',(req,res)=>{
  
        const newItem = new Item({
        temp: req.body.temp,
