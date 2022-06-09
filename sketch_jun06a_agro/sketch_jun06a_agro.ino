@@ -86,16 +86,17 @@ void loop()
   Serial.print("\n ");
 
 
+  doc["id"]= "001";
   doc["temp"]= temperature;
   doc["hum"]= humidity;
   doc["humsol"]= moisturePercent;
   doc["electrovane"]= true;
 
-
+ // doc["sensors"]["moisture"]= moisturePercent;
+  //doc["sensors"]["timestamp"]= epochTime;
 
   Serial.println("update data ...");
   POSTData();
-  
   }
 }
 
@@ -112,6 +113,9 @@ unsigned long getTime(){
       return now;
  
   }
+
+
+
 
 
 void POSTData()
