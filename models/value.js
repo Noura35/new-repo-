@@ -1,19 +1,29 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const valueSchema = new mongoose.Schema(
+// the scheme of the item to be saved in database
+const itemSchema = new Schema({
+    temp: {
+        type: String,
+        required: true
+    },
+    hum: {
+        type: String,
+        required: true
+    },
+    humsol: {
+        type: String,
+        required: true
+    },
+    electrovane: {
+        type: Boolean,
+        default:true,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-    {
-    hum: String,
-    temp: String,
-    humsol: String,
-    electrovane: Boolean,
-    dateTime: String
-
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const value = mongoose.model("value", valueSchema);
-module.exports = value;
+module.exports = Item = mongoose.model('item', itemSchema);

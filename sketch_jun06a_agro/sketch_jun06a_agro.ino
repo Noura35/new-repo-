@@ -19,7 +19,7 @@ unsigned long epochTime;
 unsigned long dataMillis=0;
 
 const char* ntpserver="pool.ntp.org";
-String serverName = "https://smartwaterring.herokuapp.com";
+String serverName = "https://smartwaterring.herokuapp.com/post";
 
 StaticJsonDocument<500> doc;
 
@@ -86,7 +86,6 @@ void loop()
   Serial.print("\n ");
 
 
-  doc["id"]= "001";
   doc["temp"]= temperature;
   doc["hum"]= humidity;
   doc["humsol"]= moisturePercent;
@@ -123,7 +122,6 @@ void POSTData()
       
       if(WiFi.status()== WL_CONNECTED){
       HTTPClient http;
-      serverName=serverName+"/api/sensors";
       http.begin(serverName);
       http.addHeader("Content-Type", "application/json");
 
