@@ -2,9 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
-//const router=require("./routes/route")
+const router = require("./routes/zone.routes")
+app.use('/api', router);
 
-const value = require("./models/value");
+const value = require("./models/sensors.models");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,35 +18,36 @@ mongoose.connect("mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/a
 
 
 
-app.get('/log',(req,res)=>{
-    console.log(req.body);
-   let newvalue = new value ({
-      deviceID :req.body.id,
-      temp :req.body.temp,
-      hum :req.body.hum,
-      dateTime:Math.floor(Date.now() / 1000)
-       
-       
-    });
-    newvalue.save()
-     return res.status(200).json({
-         success:"Position save effactué avec succes"
-     });
-   });
-
-   app.post('/post',(req,res)=>{
+//sensors
+   app.post('/api/sensors',(req,res)=>{
  
        const newItem = new value({
        temp: req.body.temp,
        hum: req.body.hum,
        humsol: req.body.humsol,
-      electrovane: req.body.electrovane
+       electrovane: req.body.electrovane
     });
     // save value to database
     newItem.save()
         .then(item => res.json(item));
     console.log(req.body);
    });
+
+/// handle get reuests
+// sends the last 7 values
+// react app sensds this get request
+   app.get('/api/sensors', async(req,res)=>{
+ 
+     
+        value.find()
+        .then(items => res.json(items.slice(items.length - 6, items.length)))
+        .catch(err => console.log(err));
+   });
+
+
+
+
+
 
 
 const PORT = process.env.PORT || 5000; 

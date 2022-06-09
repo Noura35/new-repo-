@@ -25,8 +25,8 @@ StaticJsonDocument<500> doc;
 
 
 // -- Project -------------------------------------------
-#define CLIENT                  "Office Acera"        // Client ID for the ESP (or something descriptive "Front Garden")
-#define TYPE                    "ESP32"               // Type of Sensor ("Hornbill ESP32" or "Higrow" or "ESP8266" etc.)  
+//#define CLIENT                  "Office Acera"        // Client ID for the ESP (or something descriptive "Front Garden")
+//#define TYPE                    "ESP32"               // Type of Sensor ("Hornbill ESP32" or "Higrow" or "ESP8266" etc.)  
 
 // -- Other - Helpers ------------------------------------
 #define uS_TO_S_FACTOR          1000000               // Conversion factor for micro seconds to seconds
@@ -91,9 +91,6 @@ void loop()
   doc["humsol"]= moisturePercent;
   doc["electrovane"]= true;
 
- // doc["sensors"]["moisture"]= moisturePercent;
-  //doc["sensors"]["timestamp"]= epochTime;
-
   Serial.println("update data ...");
   POSTData();
   }
@@ -122,6 +119,7 @@ void POSTData()
       
       if(WiFi.status()== WL_CONNECTED){
       HTTPClient http;
+      //serverName=serverName+"/post";
       http.begin(serverName);
       http.addHeader("Content-Type", "application/json");
 

@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // the scheme of the item to be saved in database
-const itemSchema = new Schema({
+const sensorsSchema = new Schema({
+
+
     temp: {
         type: String,
         required: true
@@ -24,6 +26,6 @@ const itemSchema = new Schema({
         type: Date,
         default: Date.now
     }
-});
+},{timestamps:true});
 
-module.exports = Item = mongoose.model('item', itemSchema);
+module.exports = sensors = mongoose.model('sensors', sensorsSchema);
