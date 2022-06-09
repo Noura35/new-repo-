@@ -86,18 +86,17 @@ void loop()
   Serial.print("\n ");
 
 
-  doc["id"]= "001";
   doc["temp"]= temperature;
   doc["hum"]= humidity;
+  doc["humsol"]= moisturePercent;
   doc["electrovane"]= true;
 
  // doc["sensors"]["moisture"]= moisturePercent;
   //doc["sensors"]["timestamp"]= epochTime;
 
   Serial.println("update data ...");
-  POSTData2();delay(5000);
-  GETData();
-
+  POSTData();
+  
   }
 }
 
@@ -116,31 +115,12 @@ unsigned long getTime(){
   }
 
 
-void GETData()
+void POSTData()
 {
       
       if(WiFi.status()== WL_CONNECTED){
       HTTPClient http;
-      serverName=serverName+"/log";
-      http.begin(serverName);
-      http.addHeader("Content-Type", "application/json");
-
-      String json;
-      serializeJson(doc, json);
-
-      Serial.println(json);
-      int httpResponseCode = http.GET();
-      Serial.println(httpResponseCode);
-      }
-}
-
-
-void POSTData2()
-{
-      
-      if(WiFi.status()== WL_CONNECTED){
-      HTTPClient http;
-      serverName=serverName+"/emit";
+      serverName=serverName+"/api/sensors";
       http.begin(serverName);
       http.addHeader("Content-Type", "application/json");
 
