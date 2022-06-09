@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 //const router=require("./routes/route")
 
-const value = require("./models/Item");
+const value = require("./models/value");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
