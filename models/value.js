@@ -5,7 +5,8 @@ const valueSchema = new mongoose.Schema(
     {
     hum: String,
     temp: String,
-    electro: Boolean,
+    humsol: String,
+    electrovane: Boolean,
     dateTime: String
 
   },

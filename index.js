@@ -5,18 +5,17 @@ const bodyParser = require('body-parser');
 //const router=require("./routes/route")
 
 const value = require("./models/value");
-const Item = require("./models/value");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post("/test", (req, res) => {
-    res.send('hello world');
+
+mongoose.connect("mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/auth?retryWrites=true&w=majority",
+).then(() => {
+    console.log('connected to base de données')
 })
 
-app.get("/test", (req, res) => {
-    res.send('bonjour');
-})
+
 
 app.get('/log',(req,res)=>{
     console.log(req.body);
@@ -36,7 +35,7 @@ app.get('/log',(req,res)=>{
 
    app.post('/post',(req,res)=>{
  
-       const newItem = new Item({
+       const newItem = new value({
        temp: req.body.temp,
        hum: req.body.hum,
        humsol: req.body.humsol,
@@ -46,18 +45,8 @@ app.get('/log',(req,res)=>{
     newItem.save()
         .then(item => res.json(item));
     console.log(req.body);
-       
-       
-       
-       
-       
-       
    });
 
-mongoose.connect("mongodb+srv://agrosmart:agrosmart@cluster0.q1dly.mongodb.net/auth?retryWrites=true&w=majority",
-).then(() => {
-    console.log('connected to base de données')
-})
 
 const PORT = process.env.PORT || 5000; 
 
