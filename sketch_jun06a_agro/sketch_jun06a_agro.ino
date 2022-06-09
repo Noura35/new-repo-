@@ -91,8 +91,7 @@ void loop()
   doc["humsol"]= moisturePercent;
   doc["electrovane"]= true;
 
- // doc["sensors"]["moisture"]= moisturePercent;
-  //doc["sensors"]["timestamp"]= epochTime;
+
 
   Serial.println("update data ...");
   POSTData();

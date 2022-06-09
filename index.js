@@ -31,22 +31,37 @@ app.get('/api/sensors', function(req, res) {
         .catch(err => console.log(err));
 });
 
-// handle post requests
-app.post('/api/sensors', function(req, res) {
-    // create new item using the schema
+/*
+/ handle post requests
+app.post('/api', (req, res)=> {
+    / create new item using the schema
     const newItem = new Item({
         temp: req.body.temp,
         hum: req.body.hum,
         humsol: req.body.humsol,
         electrovane:req.body.electrovane
     });
-    // save value to database
+    / save value to database
     newItem.save()
         .then(item => res.json(item));
     console.log(req.body);
 });
-
-
+*/
+app.post('/log',(req,res)=>{
+    console.log(req.body);
+   let newvalue = new value ({
+      deviceID :req.body.id,
+      temp :req.body.temp,
+      hum :req.body.hum,
+      dateTime:Math.floor(Date.now() / 1000)
+       
+       
+    });
+    newvalue.save()
+     return res.status(200).json({
+         success:"Position save effactué avec succes"
+     });
+   });
 
 
 
