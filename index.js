@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 
 
 
-//sensors
+//sensors:
    app.post('/api/sensors',(req,res)=>{
  
        const newItem = new value({
